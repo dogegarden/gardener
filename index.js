@@ -9,7 +9,6 @@ cmd = new Array();
 
 const get = () => {
   cmd.length = 0;
-
   const commandFolders = fs.readdirSync("./commands");
   for (const folder of commandFolders) {
     const commandFiles = fs
@@ -32,7 +31,6 @@ app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
 
 
 app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
-//   currency.add(message.author.id, 1);
 
   if (!message.content.startsWith(prefix)) return;
 
@@ -41,7 +39,6 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
 
   if (command == "help") {
     cmd
-    // console.log("hi")
       .find((com) => com.name == command)
       .execute(message, args, cmd);
     return;
@@ -49,7 +46,6 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
 
   if (command == "hello") {
     cmd
-    // console.log("hi")
       .find((com) => com.name == command)
       .execute(message, args, cmd);
     return;
@@ -57,7 +53,6 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
 
   if (command == "emoji") {
     cmd
-    // console.log("hi")
       .find((com) => com.name == command)
       .execute(message, args, cmd);
     return;
