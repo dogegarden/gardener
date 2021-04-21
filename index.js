@@ -26,7 +26,7 @@ const get = () => {
 app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
 	console.log('Connected!')
   get(); 
-	app.rooms.join('aed9d732-1b3f-4773-9b7b-7c1a1f3fce7b')
+	app.rooms.join('8b9e9af0-70a3-4f1b-90f9-571928213967')
 });
 
 
@@ -44,30 +44,17 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
     return;
   }
 
-  if (command == "hello") {
-    cmd
-      .find((com) => com.name == command)
-      .execute(message, args, cmd);
-    return;
-  }
-
-  if (command == "emoji") {
-    cmd
-      .find((com) => com.name == command)
-      .execute(message, args, cmd);
-    return;
-  }
-
-
-  if (
-    message.content == prefix + "reload" &&
-    message.author.id == process.env.OWNER_ID
-  ) {
-    loadCommands();
-    return;
-  }
-
   const commandCheck = cmd.find((com) => com.name == command);
+  if (commandCheck.category == "Economy") {
+    commandCheck.execute(message, args, currency, Users, ItemShop, app, Op);
+    return;
+  } else if (commandCheck.category == "Tags") {
+    commandCheck.execute(message, args, Tags);
+    return;
+  } else {
+    commandCheck.execute(message, args);
+    return;
+  }
 
 });
 
