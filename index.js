@@ -26,7 +26,7 @@ const get = () => {
 app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
 	console.log('Connected!')
   get(); 
-	app.rooms.join('1974448f-a973-475e-94e0-eea0d6caed21')
+	app.rooms.join('aed9d732-1b3f-4773-9b7b-7c1a1f3fce7b')
 });
 
 

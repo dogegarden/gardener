@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/collection": "^0.1.6",
+    "discord.js": "^12.5.3",
     "dogehouse.js": "^2.0.2",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.7",
