@@ -3,7 +3,7 @@ require("dotenv").config();
 const { Client, EVENT } = require("dogehouse.js");
 const app = new Client();
 const fs = require("fs");
-
+const axios = require('axios')
 const prefix = "!";
 
 cmd = new Array();
@@ -27,7 +27,7 @@ const get = () => {
 app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
 	console.log('Connected!')
   get(); 
-	app.rooms.join('8b9e9af0-70a3-4f1b-90f9-571928213967')
+	app.rooms.join('f489c2fa-f76d-4dd5-b0ed-58b23b928aa0')
 });
 
 
@@ -38,6 +38,8 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
+
+
   if (command == "help") {
     cmd
       .find((com) => com.name == command)
@@ -45,14 +47,27 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
     return;
   }
 
+  if (command == "cats") {
+    axios
+    .get('https://api.thecatapi.com/v1/images/search')
+    .then((res) => {
+      console.log('RES:', res.data[0].url)
+      message.reply(res.data[0].url)
+      return;
+    })
+  }
+
+
+
   const commandCheck = cmd.find((com) => com.name == command);
-  if (commandCheck.category == "Economy") {
-    commandCheck.execute(message, args, currency, Users, ItemShop, app, Op);
+
+  if (commandCheck.category === "General") {
+    commandCheck.execute(message, args);
     return;
-  } else if (commandCheck.category == "Tags") {
-    commandCheck.execute(message, args, Tags);
-    return;
-  } else {
+
+  } 
+  
+  else{
     commandCheck.execute(message, args);
     return;
   }
