@@ -1,10 +1,9 @@
-
 require("dotenv").config();
 const { Client, EVENT } = require("dogehouse.js");
 const app = new Client();
 const fs = require("fs");
-const axios = require('axios')
 const prefix = "!";
+
 
 cmd = new Array();
 
@@ -23,6 +22,7 @@ const get = () => {
     }
   }
 };
+
 
 app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
 	console.log('Connected!')
@@ -47,39 +47,34 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
     return;
   }
 
-  if (command == "cats") {
-    axios
-    .get('https://api.thecatapi.com/v1/images/search')
-    .then((res) => {
-      console.log('RES:', res.data[0].url)
-      message.reply(res.data[0].url)
-      return;
-    })
-  }
-
-
-
-  const commandCheck = cmd.find((com) => com.name == command);
+  const commandCheck = cmd.find((com) => com.name === command);
 
   if (commandCheck.category === "General") {
     commandCheck.execute(message, args);
     return;
 
   } 
-  
-  else{
+  else if (commandCheck.category === "Math") {
     commandCheck.execute(message, args);
     return;
-  }
+
+  } 
+
+  else if (commandCheck.category === "Moderation") {
+    commandCheck.execute(message, args);
+    return;
+
+  } 
+  
 
 });
 
 app.on(EVENT.USER_JOINED_ROOM, (user) => {
   const privateWelcomeMessage = [
     "Hi ",
-    { mention: user.username },
+    { mention: user },
     "This is gardener, an official bot for dogegarden"
   ];
 
-  user.whisper(privateWelcomeMessage);
+  app.bot.sendMessage(privateWelcomeMessage);
 });
