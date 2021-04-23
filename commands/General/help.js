@@ -2,12 +2,7 @@ module.exports = {
   name: "help",
   description: "Help",
   execute: (message, args, commands) => {
-    msgObj = new Array();
-    msgObj.push("My commands are: ! +");
-    for (const command of commands) {
-      msgObj.push("`" + command.name + "`");
-    }
+     message.reply("https://github.com/KittyX29/gardener/blob/master/commands.md")
+  }
 
-    message.reply(msgObj, { whispered: true, mentionUser: true });
-  },
 };

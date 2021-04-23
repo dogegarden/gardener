@@ -1,10 +1,18 @@
+//Declarations :)
+
 require("dotenv").config();
 const { Client, EVENT } = require("dogehouse.js");
 const app = new Client();
 const fs = require("fs");
 const prefix = "!";
 
+app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
+	console.log('Connected!')
+  get(); 
+	app.rooms.join('f489c2fa-f76d-4dd5-b0ed-58b23b928aa0')
+}); 
 
+//The Logic
 cmd = new Array();
 
 const get = () => {
@@ -24,13 +32,6 @@ const get = () => {
 };
 
 
-app.connect(process.env.TOKEN, process.env.REFRESH_TOKEN).then(async () => {
-	console.log('Connected!')
-  get(); 
-	app.rooms.join('f489c2fa-f76d-4dd5-b0ed-58b23b928aa0')
-});
-
-
 app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
 
   if (!message.content.startsWith(prefix)) return;
@@ -39,21 +40,20 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
   const command = args.shift().toLowerCase();
 
 
-
-  if (command == "help") {
-    cmd
-      .find((com) => com.name == command)
-      .execute(message, args, cmd);
-    return;
-  }
-
   const commandCheck = cmd.find((com) => com.name === command);
+
+  if (commandCheck.category == undefined) {
+    message.reply("Invalid command")
+    return;
+
+  } 
 
   if (commandCheck.category === "General") {
     commandCheck.execute(message, args);
     return;
 
   } 
+
   else if (commandCheck.category === "Math") {
     commandCheck.execute(message, args);
     return;
@@ -65,8 +65,11 @@ app.on(EVENT.NEW_CHAT_MESSAGE, (message) => {
     return;
 
   } 
-  
 
+  else{
+    message.reply("Invalid command")
+  }
+  
 });
 
 app.on(EVENT.USER_JOINED_ROOM, (user) => {
