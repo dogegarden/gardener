@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const { Client, EVENT } = require("dogehouse.js");
 const app = new Client();
