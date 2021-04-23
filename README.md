@@ -1,3 +1,4 @@
+
 # Gardener          
 
 The official DogeHouse.js bot &amp; for DogeHouse.tv.
@@ -39,3 +40,5 @@ For help with commands, refer commands.md
 
 Feel free to contribute!
 Join the support discord server for queries : 
+
+
