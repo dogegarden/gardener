@@ -3,11 +3,8 @@
 
 ## General: 
 * !cats - Gives a link to a random image of a cat
-* !emoji - Whispers a random emoji
-* !hello - Replies with Hi human
 * !help - Redirects to this file
-* !ping - replies woth Pong
-* !random - Gives a random number between 1 and 100
+
 
 ## Math: 
 * !math - Does a math problem
