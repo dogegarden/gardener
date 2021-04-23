@@ -2,7 +2,7 @@ module.exports = {
   name: "help",
   description: "Help",
   execute: (message, args, commands) => {
-     message.reply("https://github.com/KittyX29/gardener/blob/master/commands.md")
+     message.reply("Docs: https://github.com/KittyX29/gardener/blob/master/Docs/commands.md")
   }
 
 };
