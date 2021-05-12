@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@dogehouse/kebab": "^0.2.8",
+    "dotenv": "^8.2.0",
+    "math.js": "^1.1.46",
+    "mathjs": "^9.3.2",
+    "moonstone-wrapper": "^0.0.3",
+    "ws": "^7.4.5"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  }
+}
