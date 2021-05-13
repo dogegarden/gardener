@@ -17,7 +17,7 @@ $git clone https://github.com/dogegarden/gardener.git
 - Then run:
 
 ```bash
-$cd gardener-master
+$cd gardener
 ```
 
 - Open example.env
